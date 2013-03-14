@@ -1,0 +1,31 @@
+<html>
+<head>
+  <title>{% block title %}Greetings!{% endblock %}</title>
+</head>
+<body>
+  <p>
+    <a href="{% url action="index" %}">Greetings</a> |
+    <a href="{% url action="create" %}">New Greeting</a>
+  </p>
+  {% block body %}
+  <ul>
+  {% if greetings %}
+  {% for greeting in greetings %}
+    <li>{{ greeting.greeting_text }}
+  {% endfor %}
+  {% else %}
+    <li>No greetings!
+  {% endif %}
+  </ul>
+
+  <form method="post" action="{% url action="destroy" %}">
+    <select name="greeting_id">
+      {% for greeting in greetings %}
+      <option value="{{ greeting.id }}">{{ greeting.greeting_text }}
+      {% endfor %}
+    </select>
+    <input type="submit" value ="Delete">
+  </form>
+  {% endblock %}
+</body>
+</html>

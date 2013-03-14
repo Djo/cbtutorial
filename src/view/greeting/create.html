@@ -1,0 +1,18 @@
+{% extends "greeting/index.html" %}
+{% block title %}A new greeting!{% endblock %}
+{% block body %}
+
+{% if errors %}
+<ul>
+  {% for error in errors %}
+    <li>{{ error }}
+  {% endfor %}
+</ul>
+{% endif %}
+
+<form method="post">
+  New greeting:
+  <input type="text" name="greeting_text" value="{{ new_greeting.greeting_text }}">
+  <input type="submit">
+</form>
+{% endblock %}
