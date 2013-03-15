@@ -13,3 +13,6 @@ before_create() ->
                                     "masticate", "chew",
                                     [{return, list}])),
     {ok, ModifiedRecord}.
+
+after_create() ->
+    boss_mq:push("new-greetings", THIS).
