@@ -1,11 +1,13 @@
 <html>
 <head>
   <title>{% block title %}Greetings!{% endblock %}</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
   <p>
     <a href="{% url action="index" %}">Greetings</a> |
-    <a href="{% url action="create" %}">New Greeting</a>
+    <a href="{% url action="create" %}">New Greeting</a> |
+    <a href="{% url action="live" %}">Live</a>
   </p>
   {% block body %}
   <ul>
@@ -17,15 +19,6 @@
     <li>No greetings!
   {% endif %}
   </ul>
-
-  <form method="post" action="{% url action="destroy" %}">
-    <select name="greeting_id">
-      {% for greeting in greetings %}
-      <option value="{{ greeting.id }}">{{ greeting.greeting_text }}
-      {% endfor %}
-    </select>
-    <input type="submit" value ="Delete">
-  </form>
   {% endblock %}
 </body>
 </html>
